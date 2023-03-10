@@ -15,6 +15,14 @@
 #if the user wins, the function should print "You won!", 
 #and if it's a tie, the function should print "It is a tie!".
 
+#All of the code you've programmed so far relates to one thing: 
+#running the game - so you should wrap it all in one function.
+#Create and call a new function called play.
+#Inside the function you will call all the other three functions you've created 
+#(get_computer_choice, get_user_choice, and get_winner)
+#Now when you run the code, it should play a game of Rock-Paper-Scissors, 
+#and it should print whether the computer or you won.
+
 import random
 
 def get_computer_choice():
@@ -39,4 +47,7 @@ def get_winner(computer_choice, user_choice):
  else:
     print("You lost")
 
-get_winner(get_computer_choice(), get_user_choice())
+def play():
+  get_winner(get_computer_choice(), get_user_choice())
+
+play()
