@@ -32,12 +32,12 @@ def get_user_choice():
     else: 
      return(user_choice)
 
-def get_winner():
- user_choice = get_user_choice()
- computer_choice = get_computer_choice()
+def get_winner(user_choice, computer_choice):
  if user_choice == computer_choice:
     print("it's a tie")
  elif (computer_choice == "rock" and user_choice == "paper") or (computer_choice == "paper" and user_choice == "scissors") or (computer_choice == "scissors" and user_choice == "rock"):
     print("You Win")
  else:
     print("You Lose")
+
+get_winner(get_user_choice(), get_computer_choice())
