@@ -34,7 +34,7 @@ def get_user_choice():
 def get_winner(computer_choice, user_choice):
  if user_choice == computer_choice:
     print("It is a tie!")
- elif (computer_choice == "rock" and user_choice == "paper") or (computer_choice == "paper" and user_choice == "scissors") or (computer_choice == "scissors" and user_choice == "rock"):
+ elif (computer_choice == "Rock" and user_choice == "Paper") or (computer_choice == "Paper" and user_choice == "Scissors") or (computer_choice == "Scissors" and user_choice == "Rock"):
     print("You won!")
  else:
     print("You Lost")
