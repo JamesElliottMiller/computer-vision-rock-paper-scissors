@@ -33,10 +33,10 @@ def get_user_choice():
 
 def get_winner(computer_choice, user_choice):
  if user_choice == computer_choice:
-    print("it's a tie")
+    print("it's a tie!")
  elif (computer_choice == "rock" and user_choice == "paper") or (computer_choice == "paper" and user_choice == "scissors") or (computer_choice == "scissors" and user_choice == "rock"):
-    print("You Win")
+    print("You won!")
  else:
-    print("You Lose")
+    print("You Lost")
 
 get_winner(get_computer_choice(), get_user_choice())
