@@ -8,38 +8,11 @@
 
 import random
 
-valid_inputs = ["Rock", "Paper", "Scissors"]
-num_player_one_wins = 0
-num_player_two_wins = 0
-
 def get_computer_choice():
+  valid_inputs = ["Rock", "Paper", "Scissors"]
   computer_choice = random.choice(valid_inputs)
   return(computer_choice) 
 
 def get_user_choice():
   user_choice = (input("player input"))
   return(user_choice)
-
-while num_player_one_wins < 3 or num_player_two_wins < 3:
-  x = (input("player 1 input"))
-  y = (input("player 2 input"))
-  if num_player_one_wins >= 3:
-    print("Player 1 has won overall")
-    break
-  elif num_player_two_wins >= 3:
-    print("Player 2 has won overall")
-    break
-  elif x not in valid_inputs or y not in valid_inputs:
-    print("invalid input")
-  elif x == y:
-    print("it's a tie")
-  elif (x == "Rock" and y == "Paper") or (x == "Paper" and y == "Scissors") or (x == "Scissors" and y == "Rock"):
-    num_player_two_wins += 1
-    print("Player 2 wins")
-  else:
-    num_player_one_wins += 1
-    print("Player 1 wins")
-
-
-print(f"Player One Final Score {num_player_one_wins}")
-print(f"Player Two Final Score {num_player_two_wins}")
