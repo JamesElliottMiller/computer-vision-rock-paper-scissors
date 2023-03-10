@@ -1,29 +1,9 @@
+import time #I need a count down of 10 seconds
 import cv2
 from keras.models import load_model
 import numpy as np
-model = load_model('keras_model.h5')
-cap = cv2.VideoCapture(0)
-data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
-
-while True: 
-    ret, frame = cap.read()
-    resized_frame = cv2.resize(frame, (224, 224), interpolation = cv2.INTER_AREA)
-    image_np = np.array(resized_frame)
-    normalized_image = (image_np.astype(np.float32) / 127.0) - 1 # Normalize the image
-    data[0] = normalized_image
-    prediction = model.predict(data)
-    cv2.imshow('frame', frame)
-    # Press q to close the window
-    print(prediction)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
-            
-# After the loop release the cap object
-cap.release()
-# Destroy all the windows
-cv2.destroyAllWindows()
-
 import random
+
 
 def get_computer_choice():
   valid_inputs = ["Rock", "Paper", "Scissors"]
@@ -33,7 +13,7 @@ def get_computer_choice():
 
 def get_user_choice():
     user_choice = get_prediction()
-    print(user_choice)
+    print(f'you chose {user_choice}')
     return(user_choice)
 
 def get_winner(computer_choice, user_choice):
@@ -47,9 +27,36 @@ def get_winner(computer_choice, user_choice):
 def play():
   get_winner(get_computer_choice(), get_user_choice())
 
+
 def get_prediction():
   Model_Catergory_Order = ["Rock", "Paper", "Scissors", "Nothing"]
-  max_value_of_array_index = np.argmax(prediction)
+  max_value_of_array_index = np.argmax(camera_read())
   return Model_Catergory_Order[max_value_of_array_index]
 
+model = load_model('keras_model.h5')
+cap = cv2.VideoCapture(0)
+data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
+
+def camera_read():
+    start = time.time()
+    while True: 
+        ret, frame = cap.read()
+        resized_frame = cv2.resize(frame, (224, 224), interpolation = cv2.INTER_AREA)
+        image_np = np.array(resized_frame)
+        normalized_image = (image_np.astype(np.float32) / 127.0) - 1 # Normalize the image
+        data[0] = normalized_image
+        prediction = model.predict(data)
+        cv2.imshow('frame', frame)
+        # Press q to close the window
+        print(prediction)
+        if cv2.waitKey(1) & 0xFF == ord('q') or time.time() > start+5:
+         break      
+    # After the loop release the cap object
+    cap.release()
+    # Destroy all the windows
+    cv2.destroyAllWindows()
+    return prediction
+
 play()
+
+

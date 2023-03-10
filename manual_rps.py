@@ -38,6 +38,15 @@
 #That means that the first element in the list returned from the model is a list of probabilities 
 #for the four different classes. Print the response of the model if you are unclear of this.
 
+#In the previous task, 
+#the script reads the input from the camera and then compares it with the computer's choice without stopping. 
+#However, when you play a regular game, you usually count down to zero, and at that point you show your hand.
+#In this case, you need to add that countdown. 
+#An important thing to remember is that you can't use the sleep function because it will stop the script, 
+#and during that time, the camera will not be able to capture the input.
+#Use the function time.time() to get how much time has passed since the script started. 
+#Print, for example, "you chose rock" in the terminal when the countdown gets to zero.
+
 import random
 
 def get_computer_choice():
