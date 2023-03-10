@@ -45,7 +45,7 @@
 #An important thing to remember is that you can't use the sleep function because it will stop the script, 
 #and during that time, the camera will not be able to capture the input.
 #Use the function time.time() to get how much time has passed since the script started. 
-#Print, for example, "you chose rock" in the terminal when the countdown gets to zero.
+# #Print, for example, "you chose rock" in the terminal when the countdown gets to zero.
 
 import random
 
