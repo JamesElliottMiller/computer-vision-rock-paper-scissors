@@ -20,7 +20,6 @@ import random
 def get_computer_choice():
   valid_inputs = ["Rock", "Paper", "Scissors"]
   computer_choice = random.choice(valid_inputs)
-  print(computer_choice)
   return(computer_choice) 
 
 def get_user_choice():
@@ -32,7 +31,7 @@ def get_user_choice():
     else: 
      return(user_choice)
 
-def get_winner(user_choice, computer_choice):
+def get_winner(computer_choice, user_choice):
  if user_choice == computer_choice:
     print("it's a tie")
  elif (computer_choice == "rock" and user_choice == "paper") or (computer_choice == "paper" and user_choice == "scissors") or (computer_choice == "scissors" and user_choice == "rock"):
@@ -40,4 +39,4 @@ def get_winner(user_choice, computer_choice):
  else:
     print("You Lose")
 
-get_winner(get_user_choice(), get_computer_choice())
+get_winner(get_computer_choice(), get_user_choice())
