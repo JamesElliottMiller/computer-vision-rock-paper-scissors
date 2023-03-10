@@ -71,7 +71,7 @@ def get_winner(computer_choice, user_choice):
 
 ```
 
-Finally I've added all this into a higher level function which takes all three functions into one group called play
+Finally, I've added all this into a higher level function which takes all three functions into one group called play
 
 `def play():
   get_winner(get_computer_choice(), get_user_choice())`
