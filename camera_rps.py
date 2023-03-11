@@ -1,4 +1,4 @@
-import time #I need a count down of 10 seconds
+import time #I need a count down of 7 seconds
 import cv2
 from keras.models import load_model
 import numpy as np
@@ -47,7 +47,7 @@ def play():
         break
     result = get_winner(get_computer_choice(), get_user_choice())
     if result == "it is a tie":
-       continue
+        continue
     elif result == "user_wins":
          user_wins += 1
     else:

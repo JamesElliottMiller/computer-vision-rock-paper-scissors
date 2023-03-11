@@ -75,3 +75,73 @@ Finally, I've added all this into a higher level function which takes all three 
 
 `def play():
   get_winner(get_computer_choice(), get_user_choice())`
+
+## Next Step: Integrating models
+
+So integrating the webcam view took X steps:
+
+Step 1
+  
+  One was creating a camera_read function which could utilise a webcam and then predict (read to it's best ability) the hand gesture.
+  This function repeats a process of creating a predictive array (as explained in enviroments)
+  To end this process once a gesture has been determined there's is 'q' order (for quit) to exit
+  In this instance the last array would be the one used in our next step however, to make it more Rock Paper Scissors Like, I put in a condition of allowing only 7 second script time on a run of the camera_read function to take in the information before it would automatically exit and again take the last array
+
+  ![Image of webcam recognising hand gesture for rock](RPS_Image_of_frame.jpg)
+
+Step 2
+
+  Following this I made a get_prediction. This function takes from the last array, which is assigned prediction, and takes the index of the max value. Why do this? The max value in this instance it the most probable outcome of the users hand gesture so is thus what is determined to be their input.
+  After it looks at the list of catergories which are in an order to match the order of the categories set in the keras model to return from the function one of "Rock", "Paper", "Scissors"  or "Nothing".
+
+  ```
+  def get_prediction():
+  Model_Catergory_Order = ["Rock", "Paper", "Scissors", "Nothing"]
+  max_value_of_array_index = np.argmax(camera_read())
+  return Model_Catergory_Order[max_value_of_array_index]
+  ```
+
+Step 3
+
+   We then replace our initial user_choice in our RPS model above, with instead of input, a call to get prediction.
+   The surrounding validity checks are no longer necessary as the outcomes are fixed in terminology. However we do print "You chose {user_choice}" to confirm to the user what they have selected.
+
+   ```
+   def get_user_choice():
+    user_choice = get_prediction()
+    print(f'you chose {user_choice}')
+    return(user_choice)
+   ```
+
+Following this the model works as our manual RPS model above.
+
+## Next Step: Setting Conditions for winning
+
+After this I adpated the play function to include a 3 win condition for winning overall rock paper scissors. Creating a while loop on the conditions of 3 wins by either party (user or cmoputer) as the means to break the loop. I also added in, in each instance a total wins for each player so they can see how close it was.
+
+```
+def play():
+  user_wins = 0
+  computer_wins = 0
+  while user_wins < 3 or computer_wins < 3:
+    if user_wins == 3:
+        print("User has won overall")
+        print(f"User Final Score {user_wins}")
+        print(f"Computer Final Score {computer_wins}")
+        break
+    elif computer_wins == 3:
+        print("Computer has won overall")
+        print(f"User Final Score {user_wins}")
+        print(f"Computer Final Score {computer_wins}")
+        break
+    result = get_winner(get_computer_choice(), get_user_choice())
+    if result == "it is a tie":
+        continue
+    elif result == "user_wins":
+         user_wins += 1
+    else:
+         computer_wins += 1
+   ```
+
+
+
